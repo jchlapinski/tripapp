@@ -80,8 +80,9 @@ passport.deserializeUser(function(user, done) {
 })
 
 passport.use(new FacebookStrategy({
-        clientID: "1590469704484607",
-        clientSecret: "835aa7700a4b7c2fe73c695e3f8c7be3",
+        // Pola clientID i clientSecret pobieramy z facebook (po zarejestrowaniu naszej aplikacji)
+        clientID: "",
+        clientSecret: "",
         callbackURL: "http://localhost:8080/auth/facebook/callback",
         profileFields: ['id', 'displayName', 'email']
     },
