@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/tripapp.iml" filepath="$PROJECT_DIR$/.idea/tripapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tripapp-client/tripapp-client.iml" filepath="$PROJECT_DIR$/tripapp-client/tripapp-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tripapp-server/tripapp-server.iml" filepath="$PROJECT_DIR$/tripapp-server/tripapp-server.iml" />
+    </modules>
+  </component>
+</project>
