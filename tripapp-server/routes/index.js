@@ -4,6 +4,10 @@ const router = express.Router()
 const CommentController = require('../controllers/CommentController')
 const PhotoController = require('../controllers/PhotoController')
 const PlaceController = require('../controllers/PlaceController')
+const UserController = require('../controllers/UserController')
+
+router.post('/api/users/register', UserController.registerUser)
+router.get('/api/users/confirm/:linkId', UserController.confirmUser)
 
 router.get('/api/places', PlaceController.getAllPlaces)
 router.get('/api/places/:id',PlaceController.getPlaceByID, PlaceController.getPlaceDetailsById)
