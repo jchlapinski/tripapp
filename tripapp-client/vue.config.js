@@ -12,10 +12,12 @@ module.exports = {
     if (process.env.NODE_ENV === 'development') {
       config.devtool = 'eval-source-map';
       config.output.devtoolModuleFilenameTemplate = info => {
-        return !info.resourcePath.match(/^\.\//) ||
-        (info.resourcePath.match(/\.vue$/) && !info.identifier.match(/type=script/))
-            ? `webpack-generated:///${info.resourcePath}?${info.hash}`
-            : `webpack-src:///${info.resourcePath}`
+        const isSrc = info.resourcePath.match(/^\.\//) && !(info.resourcePath.match(/\.vue$/) && info.resourcePath !== info.identifier);
+        if (isSrc) {
+          return `webpack-src:///${info.resourcePath}`
+        } else {
+          return `webpack-generated:///${info.resourcePath}?${info.hash}`
+        }
       }
       config.output.devtoolFallbackModuleFilenameTemplate = 'webpack:///[resource-path]?[hash]';
     }
