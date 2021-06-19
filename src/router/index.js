@@ -1,4 +1,6 @@
-import {createRouter, createWebHistory} from "vue-router";
+import {createRouter, createWebHashHistory} from "vue-router";
+import Login from "@/views/Login";
+import Register from "@/views/Register";
 import Places from "@/views/Places";
 import Home from "@/views/Home";
 import Place from "@/views/Place";
@@ -7,6 +9,20 @@ import PlaceContainer from "@/views/PlaceContainer";
 import NotFound from "@/views/NotFound";
 
 const routes = [
+    {
+        path: '/login',
+        name: "Login",
+        component: Login
+    },
+    {
+        path: '/register',
+        name: "Register",
+        component: Register
+    },
+    {
+        path: '/auth/facebook',
+        redirect: '/auth/facebook',
+    },
     {
         path: '/',
         name: "Home",
@@ -41,9 +57,16 @@ const routes = [
     }
 ]
 
-const router = createRouter({
-    history: createWebHistory(),
+export const router = createRouter({
+    history: createWebHashHistory(),
     routes
 })
 
-export default router
+router.beforeEach(async (to, from, next) => {
+    const { store } = await import('@/store')
+    if (["Login", "Register"].indexOf(to.name) === -1 && !store.getters.isAuthenticated) {
+        next({ name: 'Login' })
+    } else {
+        next()
+    }
+})
